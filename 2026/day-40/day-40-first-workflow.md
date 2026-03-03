@@ -1,0 +1,38 @@
+name: hello
+#these are the jobs insdie the the workflow 
+
+on:
+ push: 
+  branches: [main]
+
+
+jobs :
+  greet:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: say hello to users
+        uses: actions/checkout@v4
+
+      - name: hello from github actions 
+        run: echo "Hello from GitHub Actions!"
+
+  more-data:
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: current date & time
+         run: echo "current date & time is $(date +'%Y-%m-%dT%H:%M:%S')"
+       
+       - name: name of the branch
+         run: echo "the branch name is ${{ github.ref_name }}"
+
+       - name: List of the files in the repo
+         run: |
+          echo "Listing files in the workspace directory:"
+          ls -R ${{ github.workspace }}
+
+       - name: Print OS
+         run: echo "${{ runner.os }}"
+
+
